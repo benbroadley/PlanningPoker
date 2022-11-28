@@ -19,7 +19,7 @@
         <button v-on:click="leaveSession">Leave</button>
       </p>
 
-      <pre>{{ session }}</pre>
+      <!-- <pre>{{ session }}</pre> -->
       <p>
         <button v-on:click="newTicketId">New ticket</button>
       </p>
@@ -29,6 +29,7 @@
 
 <script>
 import axios from "axios";
+import config from "../config";
 
 export default {
   name: "SessionInfo",
@@ -66,7 +67,7 @@ export default {
         user: this.username,
       };
       axios
-        .post("https://agileplanningtools.azurewebsites.net/session", body)
+        .post(`${config.serverURL}/session`, body)
         .then((response) => console.log("Created", response.data))
         .catch((error) => {
           this.errorMessage = error.message;
@@ -80,12 +81,10 @@ export default {
         ticketId: this.ticketId,
         user: this.username,
       };
-      axios
-        .post("https://agileplanningtools.azurewebsites.net/ticket", body)
-        .catch((error) => {
-          this.errorMessage = error.message;
-          console.error("There was an error!", error);
-        });
+      axios.post(`${config.serverURL}/ticket`, body).catch((error) => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
     },
     overrideId() {
       this.$store.dispatch("newId", { newId: this.newSessionId });
@@ -97,7 +96,7 @@ export default {
         user: this.username,
       };
       axios
-        .post("https://agileplanningtools.azurewebsites.net/session", body)
+        .post(`${config.serverURL}/session`, body)
         .then((response) => {
           console.log("Joined", response.data);
         })

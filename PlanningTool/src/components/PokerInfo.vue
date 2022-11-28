@@ -13,13 +13,14 @@
 <script>
 import axios from "axios";
 import { find } from "lodash";
+import config from "../config";
 
 export default {
   name: "PokerInfo",
   props: {},
   data() {
     return {
-      possibleValues: [0, 1, 2, 3, 5, 8, 13, 21, ":shrug:"],
+      possibleValues: config.pointOptions.default,
     };
   },
   computed: {
@@ -50,12 +51,10 @@ export default {
         date: new Date(),
         estimate,
       };
-      axios
-        .post("https://agileplanningtools.azurewebsites.net/estimate", body)
-        .catch((error) => {
-          this.errorMessage = error.message;
-          console.error("There was an error!", error);
-        });
+      axios.post(`${config.serverURL}/estimate`, body).catch((error) => {
+        this.errorMessage = error.message;
+        console.error("There was an error!", error);
+      });
     },
   },
 };

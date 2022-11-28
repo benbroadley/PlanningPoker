@@ -6,6 +6,14 @@
           >Please wait.. still waiting for {{ remainingToVote.join(", ") }} to
           estimate.</span
         >
+        <span
+          v-if="
+            !alreadyVoted &&
+            remainingToVote.length > 0 &&
+            remainingToVote.length < (session.users || []).length
+          "
+          >Some people have started to vote...</span
+        >
       </p>
     </div>
 

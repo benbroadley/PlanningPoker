@@ -3,6 +3,7 @@ import App from "./App.vue";
 import Vuex from "vuex";
 import { nanoid } from "nanoid";
 import VueSSE from "vue-sse";
+import config from "./config";
 
 Vue.use(Vuex);
 
@@ -91,7 +92,7 @@ Vue.config.productionTip = false;
 Vue.use(VueSSE, {
   format: "json",
   polyfill: true,
-  url: "https://agileplanningtools.azurewebsites.net/events",
+  url: `${config.serverURL}/events`,
 });
 
 new Vue({

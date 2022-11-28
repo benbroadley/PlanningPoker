@@ -12,6 +12,7 @@ import SessionInfo from "./components/SessionInfo.vue";
 import PokerInfo from "./components/PokerInfo.vue";
 import EstimateInfo from "./components/EstimateInfo.vue";
 import { isArray, filter } from "lodash";
+import config from "./config";
 
 export default {
   name: "App",
@@ -33,7 +34,7 @@ export default {
   },
   created() {
     this.$sse
-      .create("https://agileplanningtools.azurewebsites.net/events")
+      .create(`${config.serverURL}/events`)
       .on("message", (msg) => {
         console.log("MSG", JSON.stringify(msg));
         if (
