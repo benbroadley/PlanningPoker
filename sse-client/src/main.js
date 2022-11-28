@@ -91,7 +91,7 @@ Vue.config.productionTip = false;
 Vue.use(VueSSE, {
   format: "json",
   polyfill: true,
-  url: "http://localhost:3001/events",
+  url: "http://localhost:3000/events",
 });
 
 new Vue({

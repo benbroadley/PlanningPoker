@@ -50,7 +50,7 @@ export default {
         date: new Date(),
         estimate,
       };
-      axios.post("http://localhost:3001/estimate", body).catch((error) => {
+      axios.post("http://localhost:3000/estimate", body).catch((error) => {
         this.errorMessage = error.message;
         console.error("There was an error!", error);
       });
