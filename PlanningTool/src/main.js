@@ -91,7 +91,7 @@ Vue.config.productionTip = false;
 Vue.use(VueSSE, {
   format: "json",
   polyfill: true,
-  url: "http://localhost:3000/events",
+  url: "https://agileplanningtools.azurewebsites.net/events",
 });
 
 new Vue({

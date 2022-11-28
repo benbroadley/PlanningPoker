@@ -5,7 +5,7 @@ var globals = require("../globalvars");
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.json({
-    clients: { id: globals.clients[0].id, res: globals.clients[0].res[0] },
+    clients: { id: globals.clients[0].id },
     sessions: globals.sessions,
     estimates: globals.estimates,
   });

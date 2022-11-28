@@ -33,7 +33,7 @@ export default {
   },
   created() {
     this.$sse
-      .create("http://localhost:3000/events")
+      .create("https://agileplanningtools.azurewebsites.net/events")
       .on("message", (msg) => {
         console.log("MSG", JSON.stringify(msg));
         if (
