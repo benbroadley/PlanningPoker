@@ -50,10 +50,12 @@ export default {
         date: new Date(),
         estimate,
       };
-      axios.post("http://localhost:3001/estimate", body).catch((error) => {
-        this.errorMessage = error.message;
-        console.error("There was an error!", error);
-      });
+      axios
+        .post("https://agileplanningtools.azurewebsites.net/estimate", body)
+        .catch((error) => {
+          this.errorMessage = error.message;
+          console.error("There was an error!", error);
+        });
     },
   },
 };

@@ -33,8 +33,9 @@ export default {
   },
   created() {
     this.$sse
-      .create("http://localhost:3001/events")
+      .create("https://agileplanningtools.azurewebsites.net/events")
       .on("message", (msg) => {
+        console.log("MSG", JSON.stringify(msg));
         if (
           msg.type === "estimate" &&
           msg.sessionId === this.sessionId &&
@@ -62,7 +63,7 @@ export default {
           });
           this.$store.dispatch("repopulateEstimates", { estimates });
         } else {
-          // console.log("not matched", msg);
+          console.log("not matched", msg);
         }
       })
       .on("error", (err) =>

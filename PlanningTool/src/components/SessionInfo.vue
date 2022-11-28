@@ -19,7 +19,7 @@
         <button v-on:click="leaveSession">Leave</button>
       </p>
 
-      <!-- <pre>{{ session }}</pre> -->
+      <pre>{{ session }}</pre>
       <p>
         <button v-on:click="newTicketId">New ticket</button>
       </p>
@@ -66,8 +66,8 @@ export default {
         user: this.username,
       };
       axios
-        .post("http://localhost:3001/session", body)
-        .then((response) => console.log("Created", response.data.id))
+        .post("https://agileplanningtools.azurewebsites.net/session", body)
+        .then((response) => console.log("Created", response.data))
         .catch((error) => {
           this.errorMessage = error.message;
           console.error("There was an error!", error);
@@ -80,10 +80,12 @@ export default {
         ticketId: this.ticketId,
         user: this.username,
       };
-      axios.post("http://localhost:3001/ticket", body).catch((error) => {
-        this.errorMessage = error.message;
-        console.error("There was an error!", error);
-      });
+      axios
+        .post("https://agileplanningtools.azurewebsites.net/ticket", body)
+        .catch((error) => {
+          this.errorMessage = error.message;
+          console.error("There was an error!", error);
+        });
     },
     overrideId() {
       this.$store.dispatch("newId", { newId: this.newSessionId });
@@ -95,7 +97,7 @@ export default {
         user: this.username,
       };
       axios
-        .post("http://localhost:3001/session", body)
+        .post("https://agileplanningtools.azurewebsites.net/session", body)
         .then((response) => {
           console.log("Joined", response.data);
         })
