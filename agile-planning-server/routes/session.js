@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var globals = require("../globalvars");
+var globals = require("../globals");
 
 /* GET session. */
 router.get("/", function (req, res, next) {
@@ -27,7 +27,7 @@ router.post("/", function (req, res, next) {
     res.json(globals.sessions[session.id]);
     globals.sessions.type = "session";
 
-    return globals.sendEventsToAll(globals.sessions);
+    return req.app.settings.sendEventsToAll(globals.sessions);
   } catch (err) {
     console.log(err);
   }

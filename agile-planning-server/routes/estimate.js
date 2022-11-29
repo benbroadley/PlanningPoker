@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var globals = require("../globalvars");
+var globals = require("../globals");
 
 /* GET estimate. */
 router.get("/", function (req, res, next) {
@@ -25,7 +25,7 @@ router.post("/", function (req, res, next) {
     globals.estimates.push(newEstimate);
   }
   res.json(newEstimate);
-  return globals.sendEventsToAll(newEstimate);
+  return req.app.settings.sendEventsToAll(newEstimate);
 });
 
 module.exports = router;
