@@ -106,9 +106,21 @@ export default {
         });
     },
     leaveSession() {
-      // TODO: Ensure to leave the current session from the users array.
-      this.$store.dispatch("newSession", {});
-      this.$store.dispatch("newId", { clearId: true });
+      const body = {
+        id: this.sessionId,
+        ticketId: this.ticketId,
+        user: this.username,
+      };
+      axios
+        .post(`${config.serverURL}/session/leave`, body)
+        .then(() => {
+          this.$store.dispatch("newSession", {});
+          this.$store.dispatch("newId", { clearId: true });
+        })
+        .catch((error) => {
+          this.errorMessage = error.message;
+          console.error("There was an error!", error);
+        });
     },
   },
 };

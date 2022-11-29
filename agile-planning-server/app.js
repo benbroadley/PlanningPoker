@@ -74,12 +74,6 @@ app.use(function (err, req, res, next) {
 app.set("sendEventsToAll", function (msg) {
   try {
     clients.forEach((client) => {
-      client.res.write("event: test");
-      client.res.write("\n");
-
-      client.res.write(`data: ${JSON.stringify({ someKey: "value" })}`);
-      client.res.write("\n\n");
-
       client.res.write("event: message\n");
       client.res.write(`data: ${JSON.stringify(msg)}`);
       client.res.write("\n\n");
