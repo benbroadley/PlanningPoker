@@ -106,6 +106,7 @@ export default {
         });
     },
     leaveSession() {
+      // TODO: Ensure to leave the current session from the users array.
       this.$store.dispatch("newSession", {});
       this.$store.dispatch("newId", { clearId: true });
     },

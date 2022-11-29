@@ -12,7 +12,7 @@ app.get("/status", (request, response) =>
   response.json({ clients: clients.length })
 );
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 let clients = [];
 let estimates = [];

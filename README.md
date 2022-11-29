@@ -6,5 +6,5 @@ Prod build:
 
 FE:
 
-- export NODE_ENV=production
+- export NODE_ENV=prod
 - npm run build
