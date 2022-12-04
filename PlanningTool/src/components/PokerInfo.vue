@@ -19,11 +19,12 @@ export default {
   name: "PokerInfo",
   props: {},
   data() {
-    return {
-      possibleValues: config.pointOptions.default,
-    };
+    return {};
   },
   computed: {
+    session() {
+      return this.$store.state.session;
+    },
     sessionId() {
       return this.$store.state.sessionId;
     },
@@ -32,6 +33,12 @@ export default {
     },
     username() {
       return this.$store.state.name;
+    },
+    possibleValues() {
+      return this.session && this.session.config
+        ? config.pointOptions[this.session.config.pointOptions] ||
+            config.pointOptions.default
+        : config.pointOptions.default;
     },
     hasVoted() {
       return !!find(this.$store.state.estimates, {

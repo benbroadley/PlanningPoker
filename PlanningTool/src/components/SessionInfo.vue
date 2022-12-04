@@ -5,6 +5,36 @@
       <p>Please create or join a session to continue:</p>
       <p>Name: <input v-model="name" /></p>
       <p>Session id: <input v-model="newSessionId" /></p>
+      <!-- config options -->
+      <input
+        type="radio"
+        id="default"
+        value="default"
+        v-model="config.pointOptions"
+      />
+      <label for="default">Fibonacci</label>
+
+      <input
+        type="radio"
+        id="fibonacciExtended"
+        value="fibonacciExtended"
+        v-model="config.pointOptions"
+      />
+      <label for="fibonacciExtended">Fibonacci Extended</label>
+
+      <input
+        type="radio"
+        id="two"
+        value="alternative"
+        v-model="config.pointOptions"
+      />
+      <label for="alternative">5s</label>
+
+      <select v-model="config.decisionMethod">
+        <option value="mean">Mean</option>
+        <option value="mode">Mode</option>
+      </select>
+      <!-- end of config -->
       <p>
         <button v-on:click="newId">New session</button
         ><button v-on:click="overrideId">Join session</button>
@@ -37,6 +67,10 @@ export default {
     return {
       newSessionId: null,
       name: null,
+      config: {
+        pointOptions: "alternative",
+        decisionMethod: "mode",
+      },
     };
   },
   props: {
@@ -65,6 +99,7 @@ export default {
         id: this.sessionId,
         ticketId: this.ticketId,
         user: this.username,
+        config: this.config,
       };
       axios
         .post(`${config.serverURL}/session`, body)
@@ -94,6 +129,7 @@ export default {
         id: this.sessionId,
         ticketId: this.ticketId,
         user: this.username,
+        config: this.config,
       };
       axios
         .post(`${config.serverURL}/session`, body)

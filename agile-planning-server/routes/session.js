@@ -15,6 +15,7 @@ router.post("/", function (req, res, next) {
       globals.sessions[session.id] = {
         ticketId: session.ticketId,
         users: [session.user],
+        config: session.config,
       };
     } else if (
       globals.sessions[session.id] &&
